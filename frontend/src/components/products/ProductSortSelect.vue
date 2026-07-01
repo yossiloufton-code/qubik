@@ -16,7 +16,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="grid gap-4 sm:grid-cols-2">
+  <div class="grid gap-3 sm:grid-cols-2">
     <BaseSelect
       id="sort-by"
       label="Sort by"

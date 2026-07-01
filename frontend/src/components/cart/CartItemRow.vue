@@ -20,16 +20,16 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <article class="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[96px_1fr_auto] sm:items-center">
+  <article class="soft-card grid gap-4 rounded-3xl p-4 sm:grid-cols-[112px_1fr_auto] sm:items-center">
     <img
       :src="item.thumbnailUrl"
       :alt="`${item.name} thumbnail`"
-      class="h-24 w-24 rounded-xl object-cover"
+      class="h-28 w-28 rounded-2xl object-cover shadow-sm"
     />
 
     <div>
-      <h2 class="font-bold text-slate-950">{{ item.name }}</h2>
-      <p class="mt-1 text-sm text-slate-600">
+      <h2 class="text-lg font-black tracking-tight text-slate-950">{{ item.name }}</h2>
+      <p class="mt-1 text-sm font-semibold text-slate-500">
         {{ formatCurrency(item.price) }} each
       </p>
 
@@ -45,13 +45,19 @@ const emit = defineEmits<{
           :disabled="disabled"
           @click="emit('remove', item.productId)"
         >
-          Remove
+          <span class="inline-flex items-center gap-2">
+            <i class="pi pi-trash" aria-hidden="true" />
+            Remove
+          </span>
         </BaseButton>
       </div>
     </div>
 
-    <p class="text-lg font-bold text-slate-950">
-      {{ formatCurrency(item.price * item.quantity) }}
-    </p>
+    <div class="rounded-2xl bg-slate-50 p-4 text-right">
+      <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Subtotal</p>
+      <p class="mt-1 text-xl font-black text-slate-950">
+        {{ formatCurrency(item.price * item.quantity) }}
+      </p>
+    </div>
   </article>
 </template>

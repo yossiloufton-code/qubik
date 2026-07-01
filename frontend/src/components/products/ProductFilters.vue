@@ -31,21 +31,36 @@ const categoryOptions = computed(() => [
 </script>
 
 <template>
-  <div class="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:grid-cols-2">
-    <BaseInput
-      id="product-name-filter"
-      label="Search by product name"
-      :model-value="name"
-      placeholder="Search e-books, courses..."
-      @update:model-value="emit('update:name', $event)"
-    />
+  <section class="page-panel rounded-3xl p-5">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-10 w-10 place-items-center rounded-2xl bg-blue-50 text-blue-700">
+        <i class="pi pi-filter" aria-hidden="true" />
+      </span>
 
-    <BaseSelect
-      id="product-category-filter"
-      label="Category"
-      :model-value="category"
-      :options="categoryOptions"
-      @update:model-value="emit('update:category', $event)"
-    />
-  </div>
+      <div>
+        <h2 class="text-base font-black text-slate-950">Find your product</h2>
+        <p class="text-sm text-slate-500">
+          Search by name or narrow results by category.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-[1.5fr_1fr]">
+      <BaseInput
+        id="product-name-filter"
+        label="Product name"
+        :model-value="name"
+        placeholder="Search e-books, courses, templates..."
+        @update:model-value="emit('update:name', $event)"
+      />
+
+      <BaseSelect
+        id="product-category-filter"
+        label="Category"
+        :model-value="category"
+        :options="categoryOptions"
+        @update:model-value="emit('update:category', $event)"
+      />
+    </div>
+  </section>
 </template>
