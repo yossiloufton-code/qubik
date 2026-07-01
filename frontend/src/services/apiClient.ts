@@ -21,8 +21,30 @@ interface ApiRequestOptions extends RequestInit {
   query?: Record<string, string | number | boolean | null | undefined>;
 }
 
+const trimTrailingSlash = (value: string) => value.replace(/\/+$/, '');
+
+const normalizePath = (path: string) => {
+  return path.startsWith('/') ? path : `/${path}`;
+};
+
+const getBrowserOrigin = () => {
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    return window.location.origin;
+  }
+
+  return 'http://localhost:5173';
+};
+
 const buildUrl = (path: string, query?: ApiRequestOptions['query']) => {
-  const url = new URL(`${API_BASE_URL}${path}`);
+  const baseUrl = trimTrailingSlash(API_BASE_URL);
+  const requestPath = normalizePath(path);
+
+  /**
+   * Supports both:
+   * - Local dev: http://localhost:3000/api
+   * - Docker/Nginx: /api
+   */
+  const url = new URL(`${baseUrl}${requestPath}`, getBrowserOrigin());
 
   Object.entries(query ?? {}).forEach(([key, value]) => {
     if (value !== undefined && value !== null && value !== '') {

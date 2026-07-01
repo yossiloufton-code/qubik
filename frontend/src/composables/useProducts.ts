@@ -33,9 +33,13 @@ export const useProducts = () => {
   };
 
   const fetchCategories = async () => {
+  try {
     const response = await productService.getCategories();
     categories.value = response.data;
-  };
+  } catch {
+    categories.value = [];
+  }
+};
 
   const resetFilters = () => {
     filters.name = '';
