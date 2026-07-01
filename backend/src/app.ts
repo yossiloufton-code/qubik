@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import { corsMiddleware } from './config/cors';
 import { errorHandler } from './middleware/error-handler.middleware';
 import { notFoundHandler } from './middleware/not-found.middleware';
+import { privateNetworkAccessMiddleware } from './middleware/private-network-access.middleware';
 import { requestLogger } from './middleware/request-logger.middleware';
 import { apiRoutes } from './routes';
 
@@ -11,6 +12,7 @@ export const app = express();
 app.disable('x-powered-by');
 
 app.use(helmet());
+app.use(privateNetworkAccessMiddleware);
 app.use(corsMiddleware);
 app.use(express.json({ limit: '1mb' }));
 app.use(requestLogger);
