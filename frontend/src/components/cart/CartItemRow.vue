@@ -53,8 +53,7 @@ const emit = defineEmits<{
       </div>
     </div>
 
-    <div class="rounded-2xl bg-slate-50 p-4 text-right">
-      <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Subtotal</p>
+<div class="rounded-2xl bg-slate-50 p-4 text-left sm:text-right">      <p class="text-xs font-bold uppercase tracking-wide text-slate-500">Subtotal</p>
       <p class="mt-1 text-xl font-black text-slate-950">
         {{ formatCurrency(item.price * item.quantity) }}
       </p>

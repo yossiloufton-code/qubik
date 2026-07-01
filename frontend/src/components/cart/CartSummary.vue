@@ -20,8 +20,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <Card class="sticky top-24 border border-slate-200 shadow-2xl shadow-slate-950/10">
-    <template #title>
+<Card class="border border-slate-200 shadow-2xl shadow-slate-950/10 lg:sticky lg:top-24">    <template #title>
       Order summary
     </template>
 
