@@ -18,7 +18,7 @@ const router = useRouter();
 const cartStore = useCartStore();
 
 const productId = computed(() => String(route.params.id));
-const { product, isLoading, error, fetchProduct } = useProductDetails(productId.value);
+const { product, isLoading, error, fetchProduct } = useProductDetails(productId);
 
 const successMessage = ref<string | null>(null);
 
@@ -70,10 +70,10 @@ const addToCart = async () => {
         <div class="space-y-6">
           <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-950/5">
             <img
-  :src="product.thumbnailUrl"
-  :alt="`${product.name} product image`"
-  class="h-72 w-full object-cover sm:h-96 lg:h-[28rem]"
-/>
+              :src="product.thumbnailUrl"
+              :alt="`${product.name} product image`"
+              class="h-72 w-full object-cover sm:h-96 lg:h-[28rem]"
+            />
           </div>
 
           <Card class="border border-slate-200 shadow-sm">
@@ -108,7 +108,7 @@ const addToCart = async () => {
           <ProductReviews :reviews="product.reviews" />
         </div>
 
-       <Card class="border border-slate-200 shadow-2xl shadow-slate-950/10 lg:sticky lg:top-24">
+        <Card class="border border-slate-200 shadow-2xl shadow-slate-950/10 lg:sticky lg:top-24">
           <template #content>
             <Tag :value="formatCategory(product.category)" severity="info" />
 
